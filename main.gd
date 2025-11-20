@@ -140,3 +140,42 @@ func add_score(points: int) -> void:
 
 func stage_counter() -> void:
 	stage_label.text = "Stage: " + str(current_stage)
+	
+func reset_game_state():
+	# Reset music
+	normal_music.pitch_scale = 1.0
+	music_swapped = false
+
+	# Reset UI
+	panel.visible = false
+	stage_label.text = "Stage: 1"
+	score_label.text = "Score: 0"
+
+	# Reset variables
+	score = 0
+	current_stage = 1
+	enemies_spawned_per_stage = 0
+	spawn_interval = 2.0
+	enemies_per_stage = 5
+
+	# Reset the existing player (because it's a node, not a scene)
+	if is_instance_valid(player):
+		player.global_position = Vector2(0, 0)
+		player.show()
+		# Also reset any custom variables like HP, velocity, etc.
+		# player.health = player.max_health
+		# player.velocity = Vector2.ZERO
+	else:
+		print("WARNING: Player somehow got deleted! Cannot reset.")
+
+	# Remove enemies
+	for child in get_children():
+		if child.is_in_group("enemy") \
+		or child.is_in_group("hexagon_enemy") \
+		or child.is_in_group("triangle_enemy") \
+		or child.is_in_group("octogon_enemy"):
+			child.queue_free()
+
+	# Reset timer
+	spawn_timer.wait_time = spawn_interval
+	spawn_timer.start()

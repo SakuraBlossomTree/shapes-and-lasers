@@ -191,6 +191,8 @@ stream = ExtResource("8_5vw27")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
+modulate = Color(1, 1, 1, 0.58431375)
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -431.0
 offset_top = -431.99997
 offset_right = -87.0
@@ -210,7 +212,7 @@ layout_mode = 0
 offset_left = 133.0
 offset_top = 128.0
 offset_right = 203.0
-offset_bottom = 155.0
+offset_bottom = 159.0
 text = "Retry"
 script = ExtResource("9_kek77")
 
