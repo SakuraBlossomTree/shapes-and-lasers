@@ -1,0 +1,218 @@
+[gd_scene load_steps=18 format=3 uid="uid://bhpwtjlhbj137"]
+
+[ext_resource type="Script" uid="uid://c7nhha162mpvi" path="res://player_movement.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cbabgg4fh78xb" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bb35bh40cfcp4" path="res://Assets/Sprites/Player.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://0r0nr2hmxcts" path="res://Assets/Sprites/Border.png" id="4_1bvp3"]
+[ext_resource type="Shader" uid="uid://dychkybocodct" path="res://stars.gdshader" id="5_lquwl"]
+[ext_resource type="Shader" uid="uid://bc0tdsqcnxyfj" path="res://crt-shader.gdshader" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://cplpugt5nglsq" path="res://Project_Sky - Untitled(4).ogg" id="7_5vw27"]
+[ext_resource type="AudioStream" uid="uid://brbbp6w060ap3" path="res://Project_Sky - Untitled(3).ogg" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://jgxkpfqjeff3" path="res://button.gd" id="9_kek77"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("6_7mycd")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/brightness = 3.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(25, 14.952116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(665.51013, 360.98602)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(631, 345.35712)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+
+[sub_resource type="Gradient" id="Gradient_272bh"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.29554656, 0.6356275, 1)
+colors = PackedColorArray(0.9070519, 0, 0.17976618, 1, 0.45999014, 0.0027638602, 0.88905585, 1, 0, 0, 0.8784314, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5vw27"]
+gradient = SubResource("Gradient_272bh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+shader = ExtResource("5_lquwl")
+shader_parameter/horizontalMovement = 2.9802400103307036e-08
+shader_parameter/verticalMovement = -2.0
+shader_parameter/frequencyStar = 0.1
+shader_parameter/sizeStar = 100.0
+shader_parameter/brightnessStar = 1.0
+shader_parameter/shineFrequencyStar = 4.0
+shader_parameter/transparencyStar = 0.43999999016512
+shader_parameter/starIterations = 2
+shader_parameter/gradientB = SubResource("GradientTexture1D_5vw27")
+shader_parameter/frequencyBgStar = 0.99599999026407
+shader_parameter/shineFrequencyBgStar = 1.0
+shader_parameter/transparencyBgStar = 0.57999998703584
+shader_parameter/colorBackground = Color(0, 0, 0, 1)
+shader_parameter/transparencyBackground = 0.0
+shader_parameter/seed = 0.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_h2yge")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0.9999999, -0.99999976)
+scale = Vector2(3.5156236, 2.9374974)
+
+[node name="CRT Shader" type="ColorRect" parent="Camera2D"]
+z_index = 3
+material = SubResource("ShaderMaterial_272bh")
+offset_left = -267.66235
+offset_top = -185.8725
+offset_right = -227.66235
+offset_bottom = -145.8725
+scale = Vector2(13.380919, 9.873755)
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(-4, 0)
+scale = Vector2(1, 1.0038428)
+collision_mask = 7
+script = ExtResource("1_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 2.9885144)
+scale = Vector2(1, 1.1992346)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="BulletCooldown" type="Timer" parent="Player"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+offset_left = 380.0
+offset_top = -128.0
+offset_right = 679.0
+offset_bottom = -37.0
+theme_override_font_sizes/font_size = 30
+text = "Score"
+
+[node name="Label2" type="Label" parent="."]
+z_index = 2
+offset_left = 383.0
+offset_top = -49.0
+offset_right = 682.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 30
+text = "Stage
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-685, 52)
+rotation = 3.1415927
+scale = Vector2(0.4459907, 0.9929525)
+texture = ExtResource("4_1bvp3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(666, 54)
+rotation = 3.1415927
+scale = Vector2(0.4859907, 1.0058092)
+texture = ExtResource("4_1bvp3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-681, 66.576904)
+scale = Vector2(1, 1.2399997)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4, -7.9999924)
+rotation = -0.00018433017
+scale = Vector2(0.8, 2.6400008)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(670, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-4, -9)
+scale = Vector2(0.92000246, 2.8000004)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-4, 526)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+scale = Vector2(71.31999, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-4, -359)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+scale = Vector2(71.31999, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Stars Shader" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_7mycd")
+offset_left = -957.0
+offset_top = -545.0
+offset_right = -917.0
+offset_bottom = -505.0
+scale = Vector2(47.772663, 28.930664)
+
+[node name="NormalMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5vw27")
+autoplay = true
+
+[node name="SlowMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5vw27")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -431.0
+offset_top = -431.99997
+offset_right = -87.0
+offset_bottom = -76.99997
+scale = Vector2(2.3435555, 2.4031937)
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 79.0
+offset_right = 249.0
+offset_bottom = 143.0
+text = "Game Over"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 128.0
+offset_right = 203.0
+offset_bottom = 155.0
+text = "Retry"
+script = ExtResource("9_kek77")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_pressed"]

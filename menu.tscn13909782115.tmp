@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://yc3b7721b41a"]
+
+[ext_resource type="Script" uid="uid://b6cp28wfbk0kh" path="res://menu.gd" id="1_ouk20"]
+[ext_resource type="AudioStream" uid="uid://csoo3tijofniw" path="res://Project_Sky - Untitled.ogg" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://dmfpeocsdv6y2" path="res://Assets/Sprites/Square.png" id="3_4hy44"]
+[ext_resource type="Texture2D" uid="uid://cof7lntld6ps5" path="res://Assets/Sprites/Triangle.png" id="4_ytr4m"]
+[ext_resource type="Texture2D" uid="uid://pkf3fq3r4o62" path="res://Assets/Sprites/octagon-512.png" id="5_ytr4m"]
+[ext_resource type="Script" uid="uid://c27qh0l0v3r1i" path="res://node_2d.gd" id="6_l48gv"]
+
+[node name="MainRoot" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -965.0
+offset_top = -537.0
+offset_right = 962.0
+offset_bottom = 559.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_ouk20")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -101.0
+offset_top = -264.0
+offset_right = -86.0
+offset_bottom = -236.0
+text = "&"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -280.0
+offset_top = -148.0
+offset_right = 203.0
+offset_bottom = 24.0
+text = "PlaceHolder"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(8, 0)
+stream = ExtResource("2_ouk20")
+autoplay = true
+bus = &"AudioReactive"
+
+[node name="Square" type="Sprite2D" parent="."]
+position = Vector2(-245.4375, -246.3125)
+scale = Vector2(0.084228545, 0.060302746)
+texture = ExtResource("3_4hy44")
+
+[node name="Triangle" type="Sprite2D" parent="."]
+position = Vector2(-194.875, -247.875)
+scale = Vector2(0.08227538, 0.06323247)
+texture = ExtResource("4_ytr4m")
+
+[node name="Octagon512" type="Sprite2D" parent="."]
+position = Vector2(-139.87503, -251.875)
+scale = Vector2(0.07519534, 0.078613274)
+texture = ExtResource("5_ytr4m")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-54, -252)
+script = ExtResource("6_l48gv")

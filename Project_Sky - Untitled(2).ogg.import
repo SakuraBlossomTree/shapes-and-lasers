@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://y10kf75pxl6n"
+path="res://.godot/imported/Project_Sky - Untitled(2).ogg-68fdbc40959f2f05924fffaa3743720d.oggvorbisstr"
+
+[deps]
+
+source_file="res://Project_Sky - Untitled(2).ogg"
+dest_files=["res://.godot/imported/Project_Sky - Untitled(2).ogg-68fdbc40959f2f05924fffaa3743720d.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

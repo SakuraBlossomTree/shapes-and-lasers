@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4nfcod6h0j1b"]
+
+[ext_resource type="Texture2D" uid="uid://pkf3fq3r4o62" path="res://Assets/Sprites/octagon-512.png" id="1_773ob"]
+[ext_resource type="Script" uid="uid://cwodkidfabtds" path="res://octogon.gd" id="1_mhju5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_773ob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhju5"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.5767863, 0.57692057)
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_mhju5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3515625, 0.36132813)
+texture = ExtResource("1_773ob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(8.331525, 8.51127)
+shape = SubResource("RectangleShape2D_773ob")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(10.24, 9.92)
+shape = SubResource("RectangleShape2D_mhju5")
+
+[node name="Bullet_Fire" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Bullet_Fire" to="." method="_on_bullet_fire_timeout"]

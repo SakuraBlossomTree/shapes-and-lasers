@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh4a4ymr7xqht"]
+
+[ext_resource type="Texture2D" uid="uid://c8ag2dy5x4cwd" path="res://Assets/Sprites/Boss-Square.png" id="1_6iek8"]
+[ext_resource type="Script" uid="uid://kllbst7lwdig" path="res://boss_triangle.gd" id="1_7boy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmv6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iek8"]
+size = Vector2(21.274837, 21.513191)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.2537079, 0.28658888)
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_7boy3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6iek8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(27.168245, 26.588339)
+shape = SubResource("RectangleShape2D_fmv6i")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(27.168245, 26.588339)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.036807816, 0.07522051)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_6iek8")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="PatternTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+scale = Vector2(12.216752, 9.04338)
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="PatternTimer" to="." method="_on_pattern_timer_timeout"]
