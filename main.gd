@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = get_node_or_null("Player")
-@onready var enemy_scene = preload("res://enemy.tscn")
+@onready var enemy_scene = preload("res://Enemy.tscn")
 @onready var hexagon_scene = preload("res://Hexagon.tscn")
 @onready var octogon_scene = preload("res://octogon.tscn")
 @onready var triangle_scene = preload("res://Triangle.tscn")
