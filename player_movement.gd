@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var bullet_cooldown: Timer = $BulletCooldown
 @onready var crt_node: ColorRect = $"../Camera2D/CRT Shader"
+@onready var bullet_sound = $"../Bullet_Sound"
 
 const fast_speed = 500.0
 const walk_speed = 200.0
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, ACCEL * delta)
 
 	if bullet_cooldown.is_stopped():
+		bullet_sound.play()
 		shoot_bullet()
 		bullet_cooldown.start()
 

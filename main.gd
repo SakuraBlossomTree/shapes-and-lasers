@@ -12,7 +12,9 @@ extends Node2D
 @onready var end_screen = preload("res://end_game.tscn")
 @onready var normal_music = $NormalMusic
 @onready var slow_music = $SlowMusic
+@onready var main = get_tree().get_root().get_node("Main")
 @onready var panel = $Panel
+@onready var menu_sound = $Menu_Button_Sound
 var score: int = 0
 var current_stage = 1
 var enemies_spawned_per_stage = 0
@@ -130,7 +132,7 @@ func _process(_delta: float) -> void:
 		var tween = create_tween()
 			
 		# Fade volume & pitch together
-		tween.tween_property(normal_music, "pitch_scale", slow_pitch, 0.7)
+		tween.tween_property(normal_music, "pitch_scale", slow_pitch, 1.0)
 		
 		panel.visible = true
 		
@@ -179,3 +181,30 @@ func reset_game_state():
 	# Reset timer
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.start()
+
+
+
+
+func _on_button_pressed() -> void:
+	# Reset the music pitch back to 1.0 (normal)
+	menu_sound.play()
+	if is_instance_valid(normal_music):
+		var tween = create_tween()
+		tween.tween_property(normal_music, "pitch_scale", 1.0, 2.0)
+
+	# Hide panel (optional)
+	if is_instance_valid(panel):
+		panel.visible = false
+
+	await get_tree().create_timer(2.5).timeout
+	
+	# Reload the main scene
+	get_tree().reload_current_scene()
+
+	#if is_instance_valid(main):
+		#main.reset_game_state()
+
+func _on_button_2_pressed() -> void:
+	menu_sound.play()
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://menu.tscn")

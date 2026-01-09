@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://yc3b7721b41a"]
+[gd_scene load_steps=11 format=3 uid="uid://yc3b7721b41a"]
 
 [ext_resource type="Script" uid="uid://b6cp28wfbk0kh" path="res://menu.gd" id="1_ouk20"]
 [ext_resource type="Shader" uid="uid://dychkybocodct" path="res://stars.gdshader" id="2_nrnbx"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://cfp6firkukeem" path="res://Project_Sky - Untitled(1).ogg" id="4_kk3ma"]
 [ext_resource type="Script" uid="uid://d0qjc54lax4jv" path="res://button_mm.gd" id="5_ytr4m"]
 [ext_resource type="Texture2D" uid="uid://6ojsg6aebyxx" path="res://Assets/Sprites/logo_screen.png" id="6_l48gv"]
+[ext_resource type="AudioStream" uid="uid://uy0lnu6lkk30" path="res://Assets/Sounds/Blip10.ogg" id="7_ecwwl"]
+[ext_resource type="Script" uid="uid://n5vkg1e40uub" path="res://quit_button.gd" id="7_kk3ma"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iqepy"]
 shader = ExtResource("2_nrnbx")
@@ -96,4 +98,17 @@ scale = Vector2(2.8567119, 2.7218144)
 text = "New Game"
 script = ExtResource("5_ytr4m")
 
+[node name="Button2" type="Button" parent="."]
+offset_left = -143.0
+offset_top = 194.00002
+offset_right = -43.0
+offset_bottom = 225.00002
+scale = Vector2(2.8567119, 2.7218144)
+text = "Quit"
+script = ExtResource("7_kk3ma")
+
+[node name="Menu_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ecwwl")
+
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

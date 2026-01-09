@@ -2,7 +2,7 @@ extends Button
 
 @onready var main = get_tree().get_root().get_node("Main")
 @onready var normal_music = get_node("../../NormalMusic") # UPDATE path if needed
-@onready var panel = get_node("..") # or drag-assign if needed$".."
+@onready var panel = get_node("..") # or drag-assign if needed
 
 func _on_pressed() -> void:
 	# Reset the music pitch back to 1.0 (normal)
@@ -18,5 +18,6 @@ func _on_pressed() -> void:
 	
 	# Reload the main scene
 	get_tree().reload_current_scene()
+
 	#if is_instance_valid(main):
 		#main.reset_game_state()
