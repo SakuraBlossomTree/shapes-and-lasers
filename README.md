@@ -15,6 +15,8 @@ The game embraces a minimalist visual style, using simple geometric shapes for s
 
 ## Screenshots
 
+![gif preview](shapesandlasers.gif)
+
 ![screenshot gameplay](shapesandlasers.png)
 
 ## Gameplay
